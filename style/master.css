@@ -1,0 +1,32 @@
+/* core styling for page */
+/* needed css resources */
+@font-face {
+  font-family: "Roboto";
+  src: url("assets/Roboto.ttf");
+}
+@font-face {
+  font-family: "NewsCycle";
+  src: url("assets/NewsCycle.ttf");
+}
+/* tag-based styles */
+html {
+  background-color: #161616;
+  color: #FAFAFA;
+}
+
+span.highlight {
+  background-color: #ffd55c;
+}
+
+article.post p:first-child::first-letter {
+  font-size: 16.5pt;
+}
+
+button, a {
+  color: #DF2C4C;
+}
+button:hover, a:hover {
+  text-shadow: 0 0 5px #e13755;
+}
+
+/*# sourceMappingURL=master.css.map */
