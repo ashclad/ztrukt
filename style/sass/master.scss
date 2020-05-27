@@ -1,2 +1,49 @@
-html
-  background-color:
+/* core styling for page */
+// libraries or modules
+@use "color_template" as palette;
+@use "font_template" as f;
+@use "sass:list" as *;
+
+// funcs and perm global variables
+
+@mixin firstlettering_for_posts($selector: p) {
+  @if $selector == p {
+    article.post p:first-child::first-letter {
+      font-size: nth(f.$txtfont, 2) * 1.5;
+    }
+  } @else if $selector == span {
+    article.post span:first-child::first-letter {
+      font-size: nth(f.$txtfont, 2) * 1.5;
+    }
+  } @else {
+    article.post p:first-child::first-letter {
+      font-size: nth(f.$txtfont, 2) * 1.5;
+    }
+  }
+}
+
+@mixin newfont($name, $url) {
+  @font-face {
+    font-family: $name;
+    src: url($url);
+  }
+}
+
+@mixin noninverse-colors {
+  background-color: palette.$base-dark;
+  color: palette.$base-light;
+}
+
+@mixin inverse-colors {
+  background-color: palette.$base-light;
+  color: palette.$base-dark;
+}
+
+// css
+/* needed css resources */
+@include newfont("Roboto", "assets/Roboto.ttf");
+@include newfont("NewsCycle", "assets/NewsCycle.ttf");
+
+// imports
+/* tag-based styles */
+@import "tag_styles";
