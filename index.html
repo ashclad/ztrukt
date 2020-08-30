@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="master.css">
-    <link rel="stylesheet" type="text/css" href="resize.css">
-    <link rel="stylesheet" type="text/css" href="print.css">
+    <link rel="stylesheet" type="text/css" href="style/master.css">
+    <link rel="stylesheet" type="text/css" href="style/resize.css">
+    <link rel="stylesheet" type="text/css" href="style/print.css">
     <!-- <link rel="icon" type="image/x-icon" href="logo.ico"> -->
-    <script type="text/javascript" src="scripts/libraries/obj.js" defer></script>
-    <script type="text/javascript" src="scripts/libraries/jquery.min.js" async></script>
-    <script type="text/javascript" src="scripts/libraries/fun.js" async></script>
-    <script type="text/javascript" src="scripts/run.js" defer></script>
-    <title></title>
+    <script type="text/javascript" src="script/library/obj.js" defer></script>
+    <script type="text/javascript" src="script/library/jquery.min.js" async></script>
+    <script type="text/javascript" src="script/library/fun.js" async></script>
+    <script type="text/javascript" src="script/run.js" defer></script>
+    <title>Ztrukt</title>
   </head>
   <body>
     <header>
+      <a id="homelink" href=".">
+        <img id="mainlogo" class="logo" src="asset/logo.svg" alt="logo">
+        <span id="pagetitle" class="title">ZTRUKT</span>
+      </a>
     </header>
+    <main>
+      <nav class="bar sidebar">
+        <a id="resumelink" href="resume.html">Resumes</a>
+        <a id="portfolink" href="portfolio.html">Portfolio</a>
+        <a id="servicelink" href="service.html">Services</a>
+        <a id="contactlink" href="contact.html">Contact</a>
+      </nav>
+      <div id="intro" class="info">
+        <h1>What is Ztrukt?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</p>
+      </div>
+    </main>
     <footer>
+      <span>© Copyright 2020</span>
+      <nav>
+        <a id="legalink" href="#">Legal</a>
+        <a id="joinlink" href="#">Apply</a>
+      </nav>
     </footer>
   </body>
 </html>
