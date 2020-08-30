@@ -1,4 +1,4 @@
-header, nav {
+body > header, nav {
   text-align: center;
 }
 
@@ -21,6 +21,11 @@ body {
   width: 56%;
   background-color: #1a1919;
 }
+body > header span, body > header h1 {
+  margin-top: 1.25%;
+  font-size: 72pt;
+  text-shadow: 0px 0px 16px #05eC6a;
+}
 
 header {
   padding: 0.75%;
@@ -31,15 +36,9 @@ header a {
 header span {
   display: block;
 }
-header span, header h1 {
-  margin-top: 1.25%;
-  font-size: 72pt;
-  text-shadow: 0px 0px 16px #05eC6a;
-}
 
 nav {
   margin: 1.25%;
-  font-size: 18pt;
 }
 nav a {
   text-decoration: none;
@@ -53,6 +52,9 @@ nav > a {
   padding: 2% 5% 2% 5%;
 }
 
+main > nav {
+  font-size: 18pt;
+}
 main > div {
   width: 66%;
 }
