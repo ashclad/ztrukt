@@ -1,0 +1,94 @@
+// imports
+@use 'template/color' as palette
+@use 'template/font' as type
+@use 'sass:list'
+@use 'library/fun' as fun
+@use 'library/ext' as *
+
+// global variables
+
+// functions and mixins
+
+// first nest
+@font-face
+  font-family: list.nth(type.$font, 1)
+  src: list.nth(type.$font, 2) list.nth(type.$font, 3)
+
+html
+  max-width: 100%
+  background-color: #252525
+  color: palette.$secondary
+  font: type.$size 'Roboto'
+
+// second nest
+body
+  @extend %blockcenter-hor
+  width: 56%
+  background-color: palette.$primary2
+
+header
+  @extend %linecenter-hor
+  padding: .75%
+
+  & a
+    text-decoration: none
+
+  & span
+    display: block
+
+  & span, & h1
+    margin-top: 1.25%
+    font-size: type.$title
+    text-shadow: 0px 0px 16px palette.$accent1
+
+nav
+  @extend %linecenter-hor
+  margin: 1.25%
+  font-size: type.$menu
+
+  & a
+    text-decoration: none
+    border-right: solid 2px palette.$accent1
+
+    &:last-child
+      border-right: none
+
+  & > a
+    $equidist-rtl: 5%
+    $equidist-ttb: 2%
+    display: inline-block
+    padding: $equidist-ttb $equidist-rtl $equidist-ttb $equidist-rtl
+
+main
+  & > div
+    @extend %blockcenter-hor
+    width: 66%
+
+    & h1, & h2, & h3, & h4, & h5, & h6
+      position: relative
+      left: -33px
+
+      &::before
+        content: '> '
+
+  & h1, & h2, & h3, & h4, & h5, & h6
+    color: palette.$accent2
+
+footer
+  font-size: type.$small
+  text-align: right
+  padding: .75% 0 1.25% 0
+  margin-right: 2%
+
+  & nav
+    display: inline-block
+    font-size: type.$small
+    margin: 0
+
+    & > a
+      padding: 0
+      border-right: none
+
+// third nest
+a
+  color: palette.$accent1
