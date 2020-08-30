@@ -26,8 +26,15 @@ body
   width: 56%
   background-color: palette.$primary2
 
+  & > header
+    @extend %linecenter-hor
+
+    & span, & h1
+      margin-top: 1.25%
+      font-size: type.$title
+      text-shadow: 0px 0px 16px palette.$accent1
+
 header
-  @extend %linecenter-hor
   padding: .75%
 
   & a
@@ -36,15 +43,9 @@ header
   & span
     display: block
 
-  & span, & h1
-    margin-top: 1.25%
-    font-size: type.$title
-    text-shadow: 0px 0px 16px palette.$accent1
-
 nav
   @extend %linecenter-hor
   margin: 1.25%
-  font-size: type.$menu
 
   & a
     text-decoration: none
@@ -60,6 +61,9 @@ nav
     padding: $equidist-ttb $equidist-rtl $equidist-ttb $equidist-rtl
 
 main
+  & > nav
+    font-size: type.$menu
+
   & > div
     @extend %blockcenter-hor
     width: 66%
