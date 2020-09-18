@@ -2,7 +2,7 @@ body > header, nav {
   text-align: center;
 }
 
-body, main > div {
+body, main > div, main > div > img, article, article > img {
   margin: 0 auto;
 }
 
@@ -17,6 +17,33 @@ html {
   font: 12pt "Roboto";
 }
 
+article, main > div {
+  width: 66%;
+}
+article > p:first-child::first-letter, main > div > p:first-child::first-letter {
+  font-size: 24pt;
+}
+article > img, main > div > img {
+  display: block;
+  width: 85%;
+  height: auto;
+}
+article h1, main > div h1, article h2, main > div h2, article h3, main > div h3, article h4, main > div h4, article h5, main > div h5, article h6, main > div h6 {
+  position: relative;
+  left: -33px;
+}
+article h1::before, main > div h1::before, article h2::before, main > div h2::before, article h3::before, main > div h3::before, article h4::before, main > div h4::before, article h5::before, main > div h5::before, article h6::before, main > div h6::before {
+  content: "> ";
+}
+
+@keyframes glower {
+  from {
+    text-shadow: 0px 0px 16px #05eC6a;
+  }
+  to {
+    text-shadow: 0px 0px 32px #05eC6a;
+  }
+}
 body {
   width: 56%;
   background-color: #1a1919;
@@ -25,6 +52,9 @@ body > header span, body > header h1 {
   margin-top: 1.25%;
   font-size: 72pt;
   text-shadow: 0px 0px 16px #05eC6a;
+}
+body > header span:hover, body > header h1:hover {
+  animation: glower 1s forwards;
 }
 
 header {
@@ -37,6 +67,15 @@ header span {
   display: block;
 }
 
+@keyframes flipcolor {
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: #05eC6a;
+    color: #1a1919;
+  }
+}
 nav {
   margin: 1.25%;
 }
@@ -51,22 +90,20 @@ nav > a {
   display: inline-block;
   padding: 2% 5% 2% 5%;
 }
+nav > a:hover {
+  animation-name: flipcolor;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+}
 
 main > nav {
   font-size: 18pt;
 }
-main > div {
-  width: 66%;
-}
-main > div h1, main > div h2, main > div h3, main > div h4, main > div h5, main > div h6 {
-  position: relative;
-  left: -33px;
-}
-main > div h1::before, main > div h2::before, main > div h3::before, main > div h4::before, main > div h5::before, main > div h6::before {
-  content: "> ";
-}
 main h1, main h2, main h3, main h4, main h5, main h6 {
   color: #F5aa0c;
+}
+main img {
+  filter: sepia(1) saturate(200%) hue-rotate(360deg) brightness(110%);
 }
 
 footer {
@@ -76,17 +113,60 @@ footer {
   margin-right: 2%;
 }
 footer nav {
-  display: inline-block;
+  display: inline;
   font-size: 9pt;
   margin: 0;
 }
 footer nav > a {
-  padding: 0;
+  padding: 1%;
   border-right: none;
+}
+footer nav > a:hover {
+  background-color: inherit;
+  color: #05eC6a;
+  animation: none;
+  font-style: italic;
 }
 
 a {
   color: #05eC6a;
+}
+
+mark, ::selection {
+  background-color: #F5aa0c;
+  color: #121212;
+}
+mark a, mark del, mark s, mark span, mark p, ::selection a, ::selection del, ::selection s, ::selection span, ::selection p {
+  text-decoration-color: #121212;
+  color: #121212;
+}
+
+del {
+  text-decoration-color: #f13b38;
+  text-decoration-style: double;
+}
+
+s {
+  text-decoration-color: #f13b38;
+  text-decoration-style: wavy;
+}
+
+del.redact {
+  text-decoration: none;
+  background-color: #eaf0ed;
+}
+del.redact a, del.redact mark, del.redact del, del.redact s, del.redact span, del.redact p {
+  text-decoration: none;
+  background-color: #eaf0ed;
+  color: #eaf0ed;
+}
+del.redact:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+span.citation {
+  text-decoration: underline #eaf0ed dashed;
 }
 
 /*# sourceMappingURL=master.css.map */
