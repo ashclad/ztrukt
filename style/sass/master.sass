@@ -8,6 +8,8 @@
 // global variables
 
 // functions and mixins
+@mixin langstyle($elem, $language: list.nth(type.$lang, 1), $chdir: false, $chpunct: true)
+  // insert code
 
 // first nest
 @font-face
@@ -21,6 +23,35 @@ html
   font: type.$size 'Roboto'
 
 // second nest
+%longpost
+  @extend %blockcenter-hor
+  width: 66%
+
+  & > p
+    &:first-child
+      &::first-letter
+        font-size: type.$firstlet
+
+  & > img
+    @extend %blockcenter-hor
+    display: block
+    width: 85%
+    height: auto
+
+  & h1, & h2, & h3, & h4, & h5, & h6
+    position: relative
+    left: -33px
+
+    &::before
+      content: '> '
+
+@keyframes glower
+  from
+    text-shadow: 0px 0px 16px palette.$accent1
+
+  to
+    text-shadow: 0px 0px 32px palette.$accent1
+
 body
   @extend %blockcenter-hor
   width: 56%
@@ -34,6 +65,9 @@ body
       font-size: type.$title
       text-shadow: 0px 0px 16px palette.$accent1
 
+      &:hover
+        animation: glower 1s forwards
+
 header
   padding: .75%
 
@@ -42,6 +76,14 @@ header
 
   & span
     display: block
+
+@keyframes flipcolor
+  from
+    background-color: inherit
+
+  to
+    background-color: palette.$accent1
+    color: palette.$primary2
 
 nav
   @extend %linecenter-hor
@@ -60,23 +102,26 @@ nav
     display: inline-block
     padding: $equidist-ttb $equidist-rtl $equidist-ttb $equidist-rtl
 
+    &:hover
+      animation-name: flipcolor
+      animation-duration: 0.75s
+      animation-fill-mode: forwards
+
 main
   & > nav
     font-size: type.$menu
 
   & > div
-    @extend %blockcenter-hor
-    width: 66%
-
-    & h1, & h2, & h3, & h4, & h5, & h6
-      position: relative
-      left: -33px
-
-      &::before
-        content: '> '
+    @extend %longpost
 
   & h1, & h2, & h3, & h4, & h5, & h6
     color: palette.$accent2
+
+  & img
+    filter: sepia(1) saturate(200%) hue-rotate(360deg) brightness(110%)
+
+article
+  @extend %longpost
 
 footer
   font-size: type.$small
@@ -85,14 +130,53 @@ footer
   margin-right: 2%
 
   & nav
-    display: inline-block
+    display: inline
     font-size: type.$small
     margin: 0
 
     & > a
-      padding: 0
+      padding: 1%
       border-right: none
+
+      &:hover
+        background-color: inherit
+        color: palette.$accent1
+        animation: none
+        font-style: italic
 
 // third nest
 a
   color: palette.$accent1
+
+mark, ::selection
+  background-color: palette.$accent2
+  color: palette.$primary1
+
+  & a, & del, & s, & span, & p
+    text-decoration-color: palette.$primary1
+    color: palette.$primary1
+
+del
+  text-decoration-color: palette.$error
+  text-decoration-style: double
+
+s
+  text-decoration-color: palette.$error
+  text-decoration-style: wavy
+
+del.redact
+  text-decoration: none
+  background-color: palette.$secondary
+
+  & a, & mark, & del, & s, & span, & p
+    text-decoration: none
+    background-color: palette.$secondary
+    color: palette.$secondary
+
+  &:hover
+    background-color: inherit
+    color: inherit
+
+span.citation
+  // style tooltip
+  text-decoration: underline palette.$secondary dashed
