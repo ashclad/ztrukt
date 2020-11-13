@@ -1,0 +1,21 @@
+// extensions
+%linecenter-hor {
+  text-align: center;
+}
+
+%linecenter-fit {
+  @extend %linecenter-hor;
+
+  & > * {
+    display: inline-block;
+  }
+}
+
+%linecenter-ver {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+%blockcenter-hor {
+  margin: 0 auto;
+}

@@ -1,0 +1,395 @@
+// imports
+@use 'template/color' as palette;
+@use 'sass:color';
+@use 'template/font' as type;
+@use 'sass:list';
+@use 'library/fun' as fun;
+@use 'library/ext' as *;
+
+// global variables
+
+// functions and mixins
+
+// first nest
+@font-face {
+  font-family: list.nth(type.$font, 1);
+  src: list.nth(type.$font, 2) list.nth(type.$font, 3);
+}
+
+html {
+  max-width: 100%;
+  background-color: #252525;
+  color: palette.$secondary;
+  font: type.$size 'Roboto';
+}
+
+// second nest
+%longpost {
+  @extend %blockcenter-hor;
+  width: 66%;
+
+  & > p {
+    text-indent: 33px;
+    word-wrap: normal;
+
+    &:first-child {
+      &::first-letter {
+        initial-letter: 2;
+      }
+    }
+
+    &:lang(ja) {
+      writing-mode: vertical-rl;
+      text-indent: initial;
+    }
+  }
+
+  & > img, & canvas {
+    @extend %blockcenter-hor;
+    display: block;
+    width: 85%;
+    height: auto;
+  }
+
+  & h1 {
+    text-align: center
+  }
+
+  & h2, & h3, & h4, & h5, & h6 {
+    text-align: left;
+    position: relative;
+    left: -33px;
+
+    &::before {
+      content: '> ';
+    }
+  }
+}
+
+@keyframes glower {
+  from {
+    text-shadow: 0px 0px 16px palette.$accent1;
+  }
+
+  to {
+    text-shadow: 0px 0px 32px palette.$accent1;
+  }
+}
+
+body {
+  @extend %blockcenter-hor;
+  width: 56%;
+  background-color: palette.$primary2;
+
+  & > header {
+    @extend %linecenter-hor;
+
+    & span, & h1 {
+      margin-top: 1.25%;
+      font-size: type.$title;
+      text-shadow: 0px 0px 16px palette.$accent1;
+
+      &:hover {
+        animation: glower 1s forwards;
+      }
+    }
+  }
+}
+
+header {
+  padding: .75%;
+
+  & a {
+    text-decoration: none;
+  }
+
+  & span {
+    display: block;
+  }
+}
+
+@keyframes flipcolor {
+  from {
+    background-color: inherit;
+  }
+
+  to {
+    background-color: palette.$accent1;
+    color: palette.$primary2;
+  }
+}
+
+nav {
+  @extend %linecenter-hor;
+  margin: 1.25%;
+
+  & a {
+    text-decoration: none;
+    border-right: solid 2px palette.$accent1;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  & > a {
+    $equidist-rtl: 5%;
+    $equidist-ttb: 2%;
+    display: inline-block;
+    padding: $equidist-ttb $equidist-rtl $equidist-ttb $equidist-rtl;
+
+    &:hover {
+      animation-name: flipcolor;
+      animation-duration: 0.75s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+main {
+  word-wrap: break-word;
+
+  & > div {
+    @extend %blockcenter-hor;
+    width: 90%;
+  }
+
+  & p {
+    @extend %blockcenter-hor;
+    word-wrap: break-word;
+    width: 75%;
+  }
+
+  & > nav {
+    font-size: type.$menu;
+  }
+
+  & h1, & h2, & h3, & h4, & h5, & h6 {
+    text-align: center;
+    color: palette.$accent2;
+  }
+
+  & img {
+    filter: sepia(1) saturate(200%) hue-rotate(360deg) brightness(110%);
+  }
+}
+
+article {
+  @extend %longpost;
+}
+
+footer {
+  font-size: type.$small;
+  text-align: right;
+  padding: .75% 0 1.25% 0;
+  margin-right: 2%;
+
+  & nav {
+    display: inline;
+    font-size: type.$small;
+    margin: 0;
+
+    & > a {
+      padding: 1%;
+      border-right: none;
+
+      &:hover {
+        background-color: inherit;
+        color: palette.$accent1;
+        animation: none;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+blockquote {
+  padding: 1em 2em;
+  margin: auto 6em;
+  border-left: 4px solid palette.$accent2;
+  border-right: 2px solid palette.$accent2;
+  background-color: palette.$onsurface;
+  color: palette.$primary2;
+  font-weight: 900;
+}
+
+figure {
+  filter: grayscale(100%) contrast(1.75);
+
+  & figcaption {
+    @extend %linecenter-hor;
+    @extend %blockcenter-hor;
+    width: 85%;
+    padding-bottom: 2%;
+    border-radius: 0 0 5px 5px;
+    display: block;
+    text-align: center;
+    background-color: palette.$secondary;
+    color: palette.$primary1;
+  }
+
+
+  & > img, & > canvas {
+    @extend %blockcenter-hor;
+    width: 85%;
+    display: block;
+    height: auto;
+  }
+}
+
+.bib, .footnotes {
+  border-top: 2px solid color.scale(palette.$secondary, $lightness: -66%);
+  list-style-position: inside;
+  text-indent: 5%;
+  padding-left: 0;
+  padding-top: 3%;
+}
+
+.bib::before {
+  display: block;
+  content: "Bibliography";
+  font-size: 10pt;
+}
+
+[lang="ja"] > .bib {
+  list-style-type: cjk-ideographic;
+
+  &::before {
+    content: "書誌";
+  }
+}
+
+
+[lang="es"] > .bib {
+  &::before {
+    content: "Bibliografía";
+  }
+}
+
+.footnotes {
+  list-style-type: lower-roman;
+
+  &::before {
+    display: block;
+    content: "Notes";
+    font-size: 10pt;
+  }
+}
+
+[lang="ja"] > .footnotes {
+  list-style-type: hiragana;
+
+  &::before {
+    content: "脚注";
+  }
+}
+
+
+[lang="es"] > .footnotes {
+  &::before {
+    content: "Notas";
+  }
+}
+
+// third nest
+a {
+  color: palette.$accent1;
+}
+
+mark, ::selection {
+  background-color: palette.$accent2;
+  color: palette.$primary1;
+
+  & a, & del, & s, & span, & p {
+    text-decoration-color: palette.$primary1;
+    color: palette.$primary1;
+  }
+}
+
+mark::selection {
+  background-color: palette.$primary1;
+  color: palette.$accent2;
+}
+
+s {
+  text-decoration-color: palette.$error;
+  text-decoration-style: wavy;
+}
+
+del {
+  text-decoration-color: palette.$error;
+  text-decoration-style: double;
+
+  &.redact {
+    text-decoration: none;
+    background-color: palette.$secondary;
+
+    & a, & mark, & del, & s, & span, & p, &::selection {
+      text-decoration: none;
+      background-color: palette.$secondary;
+      color: palette.$secondary;
+    }
+  }
+
+  &.spoiler {
+    text-decoration: none;
+    background-color: palette.$secondary;
+
+    & a, & mark, & del, & s, & span, & p {
+      text-decoration: none;
+      background-color: palette.$secondary;
+      color: palette.$secondary;
+    }
+
+    &:hover {
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+}
+
+span.citation, a.citation {
+  &::after {
+    content: '?';
+    font-size: 6pt;
+    color: palette.$error;
+    vertical-align: super;
+    text-decoration: none;
+  }
+
+  &[title] {
+    text-decoration: underline palette.$secondary dashed;
+
+    &::selection {
+      text-decoration-color: palette.$primary1;
+    }
+  }
+
+  &[title]::after {
+    content: none;
+  }
+}
+
+span.citation > a, a.citation {
+  color: palette.$secondary;
+  font-weight: bold;
+}
+
+span.citation > a {
+  text-decoration: none;
+}
+
+span.note, a.note {
+  color: palette.$secondary;
+  font-size: 6pt;
+  vertical-align: super;
+  text-decoration: none;
+}
+
+span.note > a, a.note {
+  font-weight: bold;
+}
+
+div.blogpost {
+  @extend %longpost;
+}

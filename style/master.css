@@ -1,8 +1,9 @@
-body > header, nav {
+@charset "UTF-8";
+body > header, nav, figure figcaption {
   text-align: center;
 }
 
-body, main > div, main > div > img, article, article > img {
+body, main > div, main p, article, article > img, article canvas, figure figcaption, figure > img, figure > canvas, div.blogpost, div.blogpost > img, div.blogpost canvas {
   margin: 0 auto;
 }
 
@@ -17,22 +18,34 @@ html {
   font: 12pt "Roboto";
 }
 
-article, main > div {
+div.blogpost, article {
   width: 66%;
 }
-article > p:first-child::first-letter, main > div > p:first-child::first-letter {
-  font-size: 24pt;
+div.blogpost > p, article > p {
+  text-indent: 33px;
+  word-wrap: normal;
 }
-article > img, main > div > img {
+div.blogpost > p:first-child::first-letter, article > p:first-child::first-letter {
+  initial-letter: 2;
+}
+div.blogpost > p:lang(ja), article > p:lang(ja) {
+  writing-mode: vertical-rl;
+  text-indent: initial;
+}
+div.blogpost > img, article > img, div.blogpost canvas, article canvas {
   display: block;
   width: 85%;
   height: auto;
 }
-article h1, main > div h1, article h2, main > div h2, article h3, main > div h3, article h4, main > div h4, article h5, main > div h5, article h6, main > div h6 {
+div.blogpost h1, article h1 {
+  text-align: center;
+}
+div.blogpost h2, article h2, div.blogpost h3, article h3, div.blogpost h4, article h4, div.blogpost h5, article h5, div.blogpost h6, article h6 {
+  text-align: left;
   position: relative;
   left: -33px;
 }
-article h1::before, main > div h1::before, article h2::before, main > div h2::before, article h3::before, main > div h3::before, article h4::before, main > div h4::before, article h5::before, main > div h5::before, article h6::before, main > div h6::before {
+div.blogpost h2::before, article h2::before, div.blogpost h3::before, article h3::before, div.blogpost h4::before, article h4::before, div.blogpost h5::before, article h5::before, div.blogpost h6::before, article h6::before {
   content: "> ";
 }
 
@@ -96,10 +109,21 @@ nav > a:hover {
   animation-fill-mode: forwards;
 }
 
+main {
+  word-wrap: break-word;
+}
+main > div {
+  width: 90%;
+}
+main p {
+  word-wrap: break-word;
+  width: 75%;
+}
 main > nav {
   font-size: 18pt;
 }
 main h1, main h2, main h3, main h4, main h5, main h6 {
+  text-align: center;
   color: #F5aa0c;
 }
 main img {
@@ -128,6 +152,79 @@ footer nav > a:hover {
   font-style: italic;
 }
 
+blockquote {
+  padding: 1em 2em;
+  margin: auto 6em;
+  border-left: 4px solid #F5aa0c;
+  border-right: 2px solid #F5aa0c;
+  background-color: #E2C442;
+  color: #1a1919;
+  font-weight: 900;
+}
+
+figure {
+  filter: grayscale(100%) contrast(1.75);
+}
+figure figcaption {
+  width: 85%;
+  padding-bottom: 2%;
+  border-radius: 0 0 5px 5px;
+  display: block;
+  text-align: center;
+  background-color: #eaf0ed;
+  color: #121212;
+}
+figure > img, figure > canvas {
+  width: 85%;
+  display: block;
+  height: auto;
+}
+
+.bib, .footnotes {
+  border-top: 2px solid #435e51;
+  list-style-position: inside;
+  text-indent: 5%;
+  padding-left: 0;
+  padding-top: 3%;
+}
+
+.bib::before {
+  display: block;
+  content: "Bibliography";
+  font-size: 10pt;
+}
+
+[lang=ja] > .bib {
+  list-style-type: cjk-ideographic;
+}
+[lang=ja] > .bib::before {
+  content: "書誌";
+}
+
+[lang=es] > .bib::before {
+  content: "Bibliografía";
+}
+
+.footnotes {
+  list-style-type: lower-roman;
+}
+.footnotes::before {
+  display: block;
+  content: "Notes";
+  font-size: 10pt;
+}
+
+[lang=ja] > .footnotes {
+  list-style-type: hiragana;
+}
+[lang=ja] > .footnotes::before {
+  content: "脚注";
+}
+
+[lang=es] > .footnotes::before {
+  content: "Notas";
+}
+
 a {
   color: #05eC6a;
 }
@@ -141,9 +238,9 @@ mark a, mark del, mark s, mark span, mark p, ::selection a, ::selection del, ::s
   color: #121212;
 }
 
-del {
-  text-decoration-color: #f13b38;
-  text-decoration-style: double;
+mark::selection {
+  background-color: #121212;
+  color: #F5aa0c;
 }
 
 s {
@@ -151,22 +248,68 @@ s {
   text-decoration-style: wavy;
 }
 
+del {
+  text-decoration-color: #f13b38;
+  text-decoration-style: double;
+}
 del.redact {
   text-decoration: none;
   background-color: #eaf0ed;
 }
-del.redact a, del.redact mark, del.redact del, del.redact s, del.redact span, del.redact p {
+del.redact a, del.redact mark, del.redact del, del.redact s, del.redact span, del.redact p, del.redact::selection {
   text-decoration: none;
   background-color: #eaf0ed;
   color: #eaf0ed;
 }
-del.redact:hover {
+del.spoiler {
+  text-decoration: none;
+  background-color: #eaf0ed;
+}
+del.spoiler a, del.spoiler mark, del.spoiler del, del.spoiler s, del.spoiler span, del.spoiler p {
+  text-decoration: none;
+  background-color: #eaf0ed;
+  color: #eaf0ed;
+}
+del.spoiler:hover {
   background-color: inherit;
   color: inherit;
 }
 
-span.citation {
+span.citation::after, a.citation::after {
+  content: "?";
+  font-size: 6pt;
+  color: #f13b38;
+  vertical-align: super;
+  text-decoration: none;
+}
+span.citation[title], a.citation[title] {
   text-decoration: underline #eaf0ed dashed;
+}
+span.citation[title]::selection, a.citation[title]::selection {
+  text-decoration-color: #121212;
+}
+span.citation[title]::after, a.citation[title]::after {
+  content: none;
+}
+
+span.citation > a, a.citation {
+  color: #eaf0ed;
+  font-weight: bold;
+}
+
+span.citation > a {
+  text-decoration: none;
+}
+
+span.note, a.note {
+  color: #eaf0ed;
+  font-size: 6pt;
+  vertical-align: super;
+  text-decoration: none;
+}
+
+span.note > a, a.note {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=master.css.map */

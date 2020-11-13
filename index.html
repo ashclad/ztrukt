@@ -2,16 +2,22 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="style/master.css">
-    <link rel="stylesheet" type="text/css" href="style/resize.css">
+    <link rel="stylesheet" type="text/css" href="style/resizes.css">
     <link rel="stylesheet" type="text/css" href="style/print.css">
     <!-- <link rel="icon" type="image/x-icon" href="logo.ico"> -->
+    <!-- <script type="text/javascript" src="script/library/jquery.min.js" async></script> -->
+    <script type="text/javascript" src="script/library/dom.js" defer></script>
     <script type="text/javascript" src="script/library/obj.js" defer></script>
-    <script type="text/javascript" src="script/library/jquery.min.js" async></script>
-    <script type="text/javascript" src="script/library/fun.js" async></script>
+    <script type="text/javascript" src="script/library/fun.js" defer></script>
     <script type="text/javascript" src="script/run.js" defer></script>
     <title>Ztrukt</title>
   </head>
   <body>
+    <div>
+      <button type="button" name="langset" value="en">EN</button>
+      <button type="button" name="langset" value="es">ES</button>
+      <button type="button" name="langset" value="ja">日本語</button>
+    </div>
     <header>
       <a id="homelink" href=".">
         <img id="mainlogo" class="logo" src="asset/logo.svg" alt="logo">
@@ -19,22 +25,41 @@
       </a>
     </header>
     <main>
-      <nav class="bar sidebar">
+      <nav class="bar sidebar" lang="en">
         <a id="resumelink" href="resume.html">Resumes</a>
         <a id="portfolink" href="portfolio.html">Portfolio</a>
         <a id="servicelink" href="service.html">Services</a>
         <a id="contactlink" href="contact.html">Contact</a>
+        <a id="contactlink" href="contact.html">Blog</a>
       </nav>
-      <div id="intro" class="info">
+      <nav class="bar sidebar" lang="es">
+        <a id="resumelink" href="resume.html">Currículo</a>
+        <a id="portfolink" href="portfolio.html">Portafolio</a>
+        <a id="servicelink" href="service.html">Servicios</a>
+        <a id="contactlink" href="contact.html">Contacte</a>
+        <a id="contactlink" href="contact.html">Blog</a>
+      </nav>
+      <nav class="bar sidebar" lang="ja">
+        <a id="resumelink" href="resume.html">履歴書</a>
+        <a id="portfolink" href="portfolio.html">手本帖</a>
+        <a id="servicelink" href="service.html">勤務</a>
+        <a id="contactlink" href="contact.html">連絡する</a>
+        <a id="contactlink" href="contact.html">ブログ</a>
+      </nav>
+      <div id="intro" class="info cited" lang="en">
         <h1>What is Ztrukt?</h1>
-        <img src="asset/sample_pic.png">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore <a href="#">magna aliqua</a>. Ut enim ad minim
-        veniam, <mark>quis nostrud exercitation</mark> ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse <s>cillum</s> dolore eu fugiat nulla <del>pariatur</del>. <del class="redact">Excepteur sint
-        occaecat cupidatat non proident</del>, sunt <q>in culpa qui officia deserunt
-        mollit anim id est laborum<q> <span class="citation">(Felatus, 69)</span>.</p>
+        <p><cite>Ztrukt</cite> is a prospective collective of skilled individuals that
+        each provide their own services appropriate to their skills and otherwise
+        provide combined services for clients.<a class="citation" title="Stoker, Bram. Dracula." href="#2020">a</a>
+        In fact, take a look at this. <a class="note" title="Heidegger knows being." href="#2021">1</a></p>
+      </div>
+      <div id="thirdintro" class="info" lang="es">
+        <h1>Que es Ztrukt？</h1>
+        <p>Una colectiva prospectiva.<a class="citation" title="Derbez. Diccionario de Gueys." href="#2020">1</a></p>
+      </div>
+      <div id="secondintro" class="info" lang="ja">
+        <h1>Ztruktは何ですか？</h1>
+        <p>共同体です。</p>
       </div>
     </main>
     <footer>
